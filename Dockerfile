@@ -2,11 +2,14 @@
 # This stage is to support development.
 FROM python:alpine AS base
 WORKDIR /app
+RUN mkdir /root/.pip
+COPY  app/pip.conf /root/.pip
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 FROM node:12-alpine AS app-base
 WORKDIR /app
+RUN echo -e http://mirrors.ustc.edu.cn/alpine/v3.12/main/ > /etc/apk/repositories
 COPY app/package.json app/yarn.lock ./
 COPY app/spec ./spec
 COPY app/src ./src
