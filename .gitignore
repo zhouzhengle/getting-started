@@ -1,4 +1,8 @@
 node_modules
+todos
+package-lock.json
+spec
+yarn.lock
 # Logs
 logs
 *.log
